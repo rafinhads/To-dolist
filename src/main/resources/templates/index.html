@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>To-Do</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+<div class="container">
+    <div class="text-center">
+        <h1 class="mt-4">To-Do</h1>
+    </div>
+    <div style="float: right;">
+        <a href="/novaTarefa" class="btn btn-primary mb-3">Adicionar Nova Tarefa</a>
+    </div>
+    <table class="table table-bordered">
+        <thead class="thead-dark">
+        <tr class="text-center">
+            <th>Código</th>
+            <th>Descrição</th>
+            <th>Tarefa Completa</th>
+            <th>Editar</th>
+            <th>Deletar</th>
+        </tr>
+        </thead>
+        <tbody class="text-center">
+        <tr th:each="task : ${tarefas}">
+            <td th:text="${task.codigo}">Código</td>
+            <td th:text="${task.descricao}">Descrição</td>
+            <td th:text="${task.completo ? 'Sim' : 'Não'}">Completa</td>
+            <td>
+                <a th:href="@{/atualizarTarefa/{codigo}(codigo=${task.codigo})}" class="btn btn-warning btn-sm">
+                    <i class="fas fa-edit"></i>
+                </a>
+            </td>
+            <td>
+                <a th:href="@{/deletarTarefa/{codigo}(codigo=${task.codigo})}" class="btn btn-danger btn-sm">
+                    <i class="fas fa-trash-alt"></i>
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
